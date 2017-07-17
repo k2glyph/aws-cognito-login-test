@@ -8,19 +8,16 @@ import AWS, {
   Config,
   CognitoIdentityServiceProvider,
 } from 'aws-sdk/dist/aws-sdk-react-native';
-import { awsmobile } from './aws-exports';
+import * as awsmobile from './aws-exports';
 
 // Helper class to interface with Amazon Cognito
 
 export default class CognitoHelper {
-  constructor() {
-    this.config = awsmobile;
-  }
   getUserPool() {
     let self = this;
     return new CognitoUserPool({
-      UserPoolId: self.config['aws_user_pools_id'],
-      ClientId: self.config['aws_user_pools_web_client_id'],
+      UserPoolId: awsmobile.aws_user_pools_id,
+      ClientId: awsmobile.aws_cognito_identity_pool_id,
     });
   }
   getCurrentUser() {
